@@ -1,5 +1,8 @@
 package br.com.alura.forum.controller
 
+
+import br.com.alura.forum.dto.NovoTopicoForm
+import br.com.alura.forum.dto.TopicoView
 import br.com.alura.forum.model.Curso
 import br.com.alura.forum.model.Resposta
 import br.com.alura.forum.model.Topico
@@ -18,19 +21,19 @@ import java.util.Arrays
 class TopicoController(private val service: TopicoService) {
 
     @GetMapping
-    fun listar (): List<Topico> {
+    fun listar (): List<TopicoView> {
         return service.listar()
     }
 
     @GetMapping("/{id}")
-    fun buscarPorId(@PathVariable id: Long): Topico {
+    fun buscarPorId(@PathVariable id: Long): TopicoView {
         return service.buscarPorId(id)
 
     }
 
     @PostMapping
-    fun cadastrar(@RequestBody topico: Topico){
-         service.cadastrar(topico)
+    fun cadastrar(@RequestBody dto: NovoTopicoForm){
+         service.cadastrar(dto)
 
     }
 }
